@@ -7,11 +7,11 @@
 <br/>
 
 ##  Run Locally
-### npx ts-node src/main.ts
+npx ts-node src/main.ts
 
 ## Build & Test
-### npm run build
-### npm run test
+npm run build
+npm run test
 
 ## Understanding Code Structure
 Folderstructure and what each file does. 

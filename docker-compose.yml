@@ -1,0 +1,25 @@
+version: '3'
+volumes:
+  mongo:
+  rabbitmq:
+networks:
+  default:
+    driver: bridge
+    # prevent conflict with openVPN connection, use dedicated subnet
+    ipam:
+      config:
+        - subnet: 172.16.57.0/24
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+  mongo:
+    image: mongo:4.2
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db

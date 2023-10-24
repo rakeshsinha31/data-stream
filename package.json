@@ -1,0 +1,44 @@
+{
+  "name": "data-stream-service",
+  "version": "1.0.0",
+  "description": "Data streaming application",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha 'dest/tests/**/*.js'",
+    "build": "sudo npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rakeshsinha31/data-stream.git"
+  },
+  "keywords": [
+    "dataloop"
+  ],
+  "author": "Rakesh Sinha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rakeshsinha31/data-stream/issues"
+  },
+  "homepage": "https://github.com/rakeshsinha31/data-stream#readme",
+  "devDependencies": {
+    "@types/amqplib": "^0.10.3",
+    "@types/chai": "^4.3.9",
+    "@types/lodash": "^4.14.200",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "^20.8.8",
+    "chai": "^4.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "kafkajs": "^2.2.4",
+    "lodash": "^4.17.21",
+    "mongodb": "^6.2.0"
+  }
+}

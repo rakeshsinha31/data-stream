@@ -1,17 +1,17 @@
 ## Pre-requisites
 
 - Install Docker - [Docker >= 20.10.7](https://docs.docker.com/get-docker/)
-- Install typescript - [Python >= 3.8.11](https://www.python.org/downloads/release/python-3811/)
+- Install typescript - [Typescript >= 9.8.1](https://www.npmjs.com/package/typescript)
 - Install package.json - [npm install [<package-spec> ...]]
 
 <br/>
 
 ##  Run Locally
-npx ts-node src/main.ts
+- npx ts-node src/main.ts
 
 ## Build & Test
-npm run build
-npm run test
+- npm run build
+- npm run test
 
 ## Understanding Code Structure
 Folderstructure and what each file does. 

@@ -16,7 +16,7 @@ describe('MongoDB Data Storage', () => {
         };
         MongoClient.connect = async () => client;
 
-        const data = { streetId: 123, street_name: 'Example Street' };
+        const data: any = { streetId: 123, street_name: 'Example Street' };
         const result = await saveToMongoDB(data);
 
         expect(result).to.equal('Data saved to MongoDB');

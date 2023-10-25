@@ -3,15 +3,23 @@
 - Install Docker - [Docker >= 20.10.7](https://docs.docker.com/get-docker/)
 - Install typescript - [Typescript >= 9.8.1](https://www.npmjs.com/package/typescript)
 - Install package.json - [npm install [<package-spec> ...]]
-
 <br/>
 
-##  Run Locally
-- npx ts-node src/main.ts
+## Start Docker Containers for RabbitMQ and MongoDB
+- cd /path/to/application <docker-compose.yml>/
+- docker compose up
+
+##  Run Application Locally
+- npx ts-node src/main.ts <city_name>
 
 ## Build & Test
 - npm run build
 - npm run test
+
+## Verify data in mongo collection
+- docker exec -it data-stream-service-mongo-1  mongo
+- use dataloop
+- db.streets.find()
 
 ## Understanding Code Structure
 Folderstructure and what each file does. 

@@ -18,7 +18,7 @@ const streets_service_1 = require("./streets.service");
 class Publisher {
     static publishToRabbitMQ(message) {
         return __awaiter(this, void 0, void 0, function* () {
-            const connection = yield amqplib_1.default.connect('amqp://guest:guest@localhost:5672');
+            const connection = yield amqplib_1.default.connect(`amqp://${this.db_user}:${this.db_pwd}@${this.db_host}:${this.db_port}`);
             const channel = yield connection.createChannel();
             channel.assertQueue(this.queueName, { durable: false });
             channel.sendToQueue(this.queueName, Buffer.from(JSON.stringify(message)));
@@ -36,4 +36,8 @@ class Publisher {
     }
 }
 exports.Publisher = Publisher;
+Publisher.db_host = process.env.DB_HOST;
+Publisher.db_port = process.env.DB_PORT;
+Publisher.db_user = process.env.DB_USER;
+Publisher.db_pwd = process.env.DB_PASSWORD;
 Publisher.queueName = 'streetsQueue';

@@ -13,23 +13,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Consumer = void 0;
-const db_client_1 = require("./database/db_client");
 const amqplib_1 = __importDefault(require("amqplib"));
+const db_client_1 = require("./database/db_client");
 const streets_service_1 = require("./streets.service");
+const publisher_service_1 = require("./publisher.service");
 class Consumer {
     static subscribeToRabbitMQ() {
         return __awaiter(this, void 0, void 0, function* () {
-            const connection = yield amqplib_1.default.connect('amqp://guest:guest@localhost:5672');
+            const connection = yield amqplib_1.default.connect(`amqp://${publisher_service_1.Publisher.db_user}:${publisher_service_1.Publisher.db_pwd}@${publisher_service_1.Publisher.db_host}:${publisher_service_1.Publisher.db_port}`);
             const channel = yield connection.createChannel();
             const queue = 'streetsQueue';
             channel.assertQueue(queue, { durable: false });
-            console.log('Waiting for messages...');
+            console.log('Queue is ready to accept messages...');
             channel.consume(queue, (msg) => __awaiter(this, void 0, void 0, function* () {
                 const message = JSON.parse(msg.content.toString());
                 try {
                     // Process the message and save it to MongoDB
                     const streetData = yield streets_service_1.StreetsService.getStreetInfoById(message.streetId);
-                    console.log(streetData);
+                    console.log(typeof (streetData));
                     yield (0, db_client_1.saveToMongoDB)(streetData);
                 }
                 catch (error) {

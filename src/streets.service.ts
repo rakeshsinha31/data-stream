@@ -1,18 +1,15 @@
 import axios, { Axios } from 'axios';
 import { omit } from 'lodash';
 import { cities, city, enlishNameByCity } from './cities'
-
 import * as dotenv from "dotenv"
-
-
 dotenv.config()
 
 export interface Street extends Omit<ApiStreet, '_id'> {
     streetId: number
 }
 
-interface ApiStreet {
-    _id: number
+export interface ApiStreet {
+    _id?: number
     region_code: number
     region_name: string
     city_code: number
@@ -26,7 +23,7 @@ interface ApiStreet {
 
 export class StreetsService {
     static url = process.env.HOST as string
-    static resource_id = process.env.RESOURCE_ID as string
+    static resource_id = process.env.RESOURCE_ID
     private static _axios: Axios
     private static get axios() {
         if (!this._axios) {
@@ -54,7 +51,10 @@ export class StreetsService {
         }
         const dbStreet: ApiStreet = results[0]
         const cityName = enlishNameByCity[dbStreet.city_name]
-        const street = { ...omit<ApiStreet>(dbStreet, '_id'), streetId: dbStreet._id, city_name: cityName, region_name: dbStreet.region_name.trim(), street_name: dbStreet.street_name.trim() }
+        const street = {
+            ...omit<ApiStreet>(dbStreet, '_id'), streetId: dbStreet._id, city_name: cityName, region_name: dbStreet.region_name.trim(
+            ), street_name: dbStreet.street_name.trim()
+        }
         return street
     }
 }
